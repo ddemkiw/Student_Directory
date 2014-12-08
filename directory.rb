@@ -27,12 +27,13 @@ def input_students
     puts "Now we have #{@students.length} students"
     # get another name from the user
     name = gets.chomp
-  end
+  end  
 end
 
 def print_menu    
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save the list to students.csv"
   puts "9. Exit" # 9 because we'll be adding more items  
 end
 
@@ -40,27 +41,6 @@ def show_students
   print_header
   print_students_list
   print_footer
-end
-
-def process(selection)
-  case selection
-  when "1"
-    input_students
-  when "2"
-    show_students
-  when "9"
-    exit
-  else
-    puts "I don't know what you mean, try again"
-  end
-end
-
-
-def interactive_menu  
-  loop do
-    print_menu        
-    process(gets.chomp)
-  end
 end
 
 def save_students
@@ -73,6 +53,28 @@ def save_students
     file.puts csv_line
   end
   file.close
+end
+
+def process(selection)
+  case selection
+  when "1"
+    input_students
+  when "2"
+    show_students
+  when "3"
+    save_students    
+  when "9"
+    exit
+  else
+    puts "I don't know what you mean, try again"
+  end
+end
+
+def interactive_menu  
+  loop do
+    print_menu        
+    process(gets.chomp)
+  end
 end
 
 interactive_menu
